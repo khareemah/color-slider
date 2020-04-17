@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Color Slider</title>
+    <style>
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        display: flex;
+        padding: 0;
+        margin: 0;
+        align-items: center;
+        justify-content: center;
+      }
+      #wrapper {
+        width: 400px;
+        padding: 30px;
+      }
+      #box {
+        width: 100%;
+        height: 300px;
+        border: 4px solid brown;
+        background-color: rgb(255, 0, 0, 0.5);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: background 100ms;
+      }
+      .divText {
+        font-weight: bold;
+        font-size: 1.2rem;
+      }
+      label {
+        display: block;
+        margin-top: 5px;
+      }
+      input {
+        display: block;
+        width: 100%;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="wrapper">
+      <div id="box">
+        <p class="divText">rgb(225, 0, 0, 0.5)</p>
+      </div>
+      <label>Red: <span id="redValue">255</span></label>
+      <input type="range" min="0" max="255" id="red" value="255" />
+
+      <label>Blue: <span id="greenValue">0</span></label>
+      <input type="range" min="0" max="255" id="green" value="0" />
+      <label>Green: <span id="blueValue">255</span></label>
+      <input type="range" min="0" max="255" id="blue" value="0" />
+      <label>Alpha: <span id="alphaValue">0.5</span></label>
+      <input type="range" min="0" max="10" id="alpha" value="5" />
+    </div>
+    <script>
+      let slider = document.querySelectorAll("input");
+      for (let i = 0; i < slider.length; i++) {
+        slider[i].addEventListener("input", function() {
+          let div = document.getElementById("box");
+          let red = document.getElementById("red").value;
+          let blue = document.getElementById("blue").value;
+          let green = document.getElementById("green").value;
+          let alpha = document.getElementById("alpha").value;
+          let divText = document.querySelector(".divText");
+          div.style.backgroundColor =
+            "rgb(" + red + "," + blue + "," + green + "," + alpha / 10 + ")";
+          divText.textContent =
+            "rgb(" + red + "," + blue + "," + green + "," + alpha / 10 + ")";
+          document.getElementById("redValue").textContent = red;
+          document.getElementById("greenValue").textContent = green;
+          document.getElementById("blueValue").textContent = blue;
+          document.getElementById("alphaValue").textContent = alpha / 10;
+        });
+      }
+    </script>
+  </body>
+</html>
